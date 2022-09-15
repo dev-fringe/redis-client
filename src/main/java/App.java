@@ -8,9 +8,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.core.RedisTemplate;
 
 @Import(RedisConfig.class)
-public class App implements InitializingBean{
-	
-	@Autowired RedisTemplate<String, Object> redisTemplate;
+public class App implements InitializingBean {
+
+	@Autowired
+	RedisTemplate<String, Object> redisTemplate;
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
@@ -25,7 +26,6 @@ public class App implements InitializingBean{
 		redisTemplate.opsForValue().set("test1", m);
 		Map<String, Object> m2 = (Map<String, Object>) redisTemplate.opsForValue().get("test1");
 		System.out.println(m2);
-		
-		
+
 	}
 }

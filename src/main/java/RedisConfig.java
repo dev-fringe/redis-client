@@ -21,20 +21,20 @@ public class RedisConfig {
 		f.setValidateConnection(true);
 		return f;
 	}
-	
+
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
-	    RedisTemplate<String, Object> r = new RedisTemplate<>();
-	    r.setConnectionFactory(lettuceConnectionFactory);
-	    Jackson2JsonRedisSerializer<Object> j = new Jackson2JsonRedisSerializer<>(Object.class);
-        ObjectMapper m = new ObjectMapper();
-        m.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        m.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
-        j.setObjectMapper(m);
-        r.setKeySerializer(RedisSerializer.string());
-        r.setHashKeySerializer(RedisSerializer.string());
-        r.setValueSerializer(j);
-        r.setHashValueSerializer(j);
-	    return r;
+		RedisTemplate<String, Object> r = new RedisTemplate<>();
+		r.setConnectionFactory(lettuceConnectionFactory);
+		Jackson2JsonRedisSerializer<Object> j = new Jackson2JsonRedisSerializer<>(Object.class);
+		ObjectMapper m = new ObjectMapper();
+		m.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+		m.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+		j.setObjectMapper(m);
+		r.setKeySerializer(RedisSerializer.string());
+		r.setHashKeySerializer(RedisSerializer.string());
+		r.setValueSerializer(j);
+		r.setHashValueSerializer(j);
+		return r;
 	}
 }
